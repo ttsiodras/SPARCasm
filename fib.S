@@ -7,13 +7,13 @@ main: 	save	%sp,-120,%sp
 	call	printf
 	nop
  	set	inpVal, %o1
-	or	%g0,%o1,%l1
+	mov     %o1,%l1
 	set	29, %l5
- 	st	%l5, [%l1 + %g0]
- 	ld	[%l1 + %g0], %o0
+ 	st	%l5, [%l1]
+ 	ld	[%l1], %o0
 	call	fib
 	nop
-	or	%o0,%g0, %o1
+	mov     %o0, %o1
 	set	formatn, %o0
 	call	printf
 	nop
@@ -33,11 +33,11 @@ fib:	save	%sp,-120,%sp
 recur:	sub	%i0,1,%o0
 	call	fib
 	nop
-	or	%g0, %o0, %l0
+	mov     %o0, %l0
 
 #ifdef DEBUG
-	or	%g0, %o0, %o2
-	or	%g0, %i0, %o1
+	mov     %o0, %o2
+	mov     %i0, %o1
 	set     dbg1, %o0
 	call	printf
 	nop
@@ -46,10 +46,10 @@ recur:	sub	%i0,1,%o0
 	sub	%i0,2,%o0
 	call	fib
 	nop
-	or	%g0, %o0, %l2
+	mov     %o0, %l2
 
 #ifdef DEBUG
-	or	%g0, %o0, %o1
+	mov     %o0, %o1
 	set     formatn, %o0
 	call	printf
 	nop
