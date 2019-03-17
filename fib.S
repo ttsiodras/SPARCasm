@@ -6,11 +6,10 @@ main: 	save	%sp,-120,%sp
 	set	string, %o0
 	call	printf
 	nop
-	set	format, %o0
  	set	inpVal, %o1
 	or	%g0,%o1,%l1
-	call	scanf
-	nop
+	set	29, %l5
+ 	st	%l5, [%l1 + %g0]
  	ld	[%l1 + %g0], %o0
 	call	fib
 	nop
@@ -36,32 +35,31 @@ recur:	sub	%i0,1,%o0
 	nop
 	or	%g0, %o0, %l0
 
-.ifdef DEBUG
+#ifdef DEBUG
 	or	%g0, %o0, %o2
 	or	%g0, %i0, %o1
 	set     dbg1, %o0
 	call	printf
 	nop
-.endif
+#endif
 
 	sub	%i0,2,%o0
 	call	fib
 	nop
 	or	%g0, %o0, %l2
 
-.ifdef DEBUG
+#ifdef DEBUG
 	or	%g0, %o0, %o1
 	set     formatn, %o0
 	call	printf
 	nop
-.endif
+#endif
 	add	%l0, %l2, %i0
-
 	ret
 	restore
 
 	.section ".data"
-string: .asciz   "Enter input number:\n> "
+string: .asciz   "Computing fib(29)...\n"
 	.align 4
 format: .asciz   "%d"
 	.align 4
