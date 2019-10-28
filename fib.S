@@ -3,12 +3,13 @@
 
 	.align 4
 main: 	save	%sp,-120,%sp
+	set	29, %l5
+	mov     %l5,%o1
 	set	string, %o0
 	call	printf
 	nop
  	set	inpVal, %o1
 	mov     %o1,%l1
-	set	29, %l5
  	st	%l5, [%l1]
  	ld	[%l1], %o0
 	call	fib
@@ -59,7 +60,7 @@ recur:	sub	%i0,1,%o0
 	restore
 
 	.section ".data"
-string: .asciz   "Computing fib(29)...\n"
+string: .asciz   "Computing fib(%d)...\n"
 	.align 4
 format: .asciz   "%d"
 	.align 4
