@@ -8,5 +8,8 @@ fib.elf:	fib.S my_printf.c
 simulate:	fib.elf
 	qemu-system-sparc -M leon3_generic -nographic -kernel $<
 
+runInFPGA:	fib.elf
+	bash -c '/opt/grmon-eval-3.1.0/linux/bin64/grmon -u -xilusb -c <(echo -e "load fib.elf\nrun\nquit\n")'
+
 clean:
 	rm -f fib.elf

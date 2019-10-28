@@ -10,7 +10,7 @@
 //
 // Using this instead of normal printf (which is thankfully defined as a weak
 // symbol) drops my .text usage dramatically - enough to allow me to run
-// in my tiny 16KB or BlockRAM.
+// in my tiny 16KB of BlockRAM.
 
 #include "my_printf.h"
 
