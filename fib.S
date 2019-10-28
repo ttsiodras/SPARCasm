@@ -3,27 +3,27 @@
 
 	.align 4
 main: 	save	%sp,-120,%sp
-	set	31, %l5
+	set	31, %l5		// Compute fib(31)
 
 	mov     %psr, %l4	// Enable Traps
 	or      %l4, 32, %l4	// Otherwise silly QEMU
 	mov     %l4, %psr	// fails when window overflows
 
-	mov     %l5,%o1
+	mov     %l5,%o1		// Print 'Computing fib(..)=
 	set	string, %o0
 	call	printf
 	nop
- 	set	inpVal, %o1
-	mov     %o1,%l1
- 	st	%l5, [%l1]
- 	ld	[%l1], %o0
+
+ 	mov	%l5, %o0	// Start the chain
 	call	fib
 	nop
-	mov     %o0, %o1
+
+	mov     %o0, %o1	// Print the result
 	set	formatn, %o0
 	call	printf
 	nop
-	ret
+
+	ret			// goodbye, cruel asm world
 	restore
 
 	.align	4
@@ -72,5 +72,3 @@ format: .asciz   "%d"
 formatn:.asciz  "%d\n"
 	.align 4
 dbg1:   .asciz   "fib(%d) = %d + "
-	.align 4
-inpVal:	.word
