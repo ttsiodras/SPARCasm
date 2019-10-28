@@ -3,7 +3,12 @@
 
 	.align 4
 main: 	save	%sp,-120,%sp
-	set	29, %l5
+	set	31, %l5
+
+	mov     %psr, %l4	// Enable Traps
+	or      %l4, 32, %l4	// Otherwise silly QEMU
+	mov     %l4, %psr	// fails when window overflows
+
 	mov     %l5,%o1
 	set	string, %o0
 	call	printf
