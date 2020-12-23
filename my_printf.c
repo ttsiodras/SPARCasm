@@ -158,7 +158,7 @@ static int simple_vsprintf(const char *format, va_list ap)
                     u.i = va_arg(ap, int);
                     pc += simple_outputi(u.i, 10, 1, width, flags, 'a');
                     break;
-
+#ifndef SMALL_ZESTSC1
                 case('u'):
                     u.u = va_arg(ap, unsigned int);
                     pc += simple_outputi(u.u, 10, 0, width, flags, 'a');
@@ -185,6 +185,7 @@ static int simple_vsprintf(const char *format, va_list ap)
                     u.s = va_arg(ap, char *);
                     pc += prints(u.s ? u.s : "(null)", width, flags);
                     break;
+#endif
                 default:
                     break;
             }
